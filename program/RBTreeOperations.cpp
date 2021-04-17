@@ -147,8 +147,10 @@ void RBTreeOperations::measurements() {
             measPutTime(numberOfElements);
             break;
         case 2:
+            measRemTime(numberOfElements);
             break;
         case 3:
+            measFindTime(numberOfElements);
             break;
         default:
             throw 4;
@@ -186,4 +188,55 @@ rbtree RBTreeOperations::generateTree(int size) {
         measurementsStructure.put(rand() % (size/2));
     }
     return measurementsStructure;
+}
+
+void RBTreeOperations::measRemTime(int numberOfElements) {
+    unsigned long long average = 0;
+    for(int i = 0; i < 128; i++)
+    {
+        auto measurementStructure = generateTree(numberOfElements);
+        std::cout << "|";//todo
+        int32_t elementToRemove = rand() % (numberOfElements / 2);
+        StopWatch watch;
+        watch.start();
+        measurementStructure.removeKey(elementToRemove);
+        watch.stop();
+        average += watch.getLastMeasurmentMicrosec();
+        if(!watch.getLastMeasurmentMicrosec())
+        {
+            i--;
+            continue;
+        }
+    }
+    average /= 128;
+    std::cout << "Sredni czas usuniecia elementu dla drzewa CC o rozmiarze "
+              << std::to_string(numberOfElements) << std::endl
+              << " to " << std::to_string(average) << ".\n";
+}
+
+void RBTreeOperations::measFindTime(int numberOfElements) {
+    unsigned long long average = 0;
+    for(int i = 0; i < 128; i++)
+    {
+        auto measurementStructure = generateTree(numberOfElements);
+        std::cout << "|";//todo
+        int32_t elementToFind = rand() % numberOfElements;
+        StopWatch watch;
+        bool contains;
+        watch.start();
+        contains = measurementStructure.containsKey(elementToFind);
+        watch.stop();
+        if(contains)
+            tree.put(0);
+        average += watch.getLastMeasurmentMicrosec();
+        if(!watch.getLastMeasurmentMicrosec())
+        {
+            i--;
+            continue;
+        }
+    }
+    average /= 128;
+    std::cout << "Sredni czas wyszukania elementu dla drzewa CC o rozmiarze "
+              << std::to_string(numberOfElements) << std::endl
+              << " to " << std::to_string(average) << ".\n";
 }

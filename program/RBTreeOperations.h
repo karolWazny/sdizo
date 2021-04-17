@@ -21,6 +21,8 @@ private:
     void measurements();
 
     void measPutTime(int size);
+    void measRemTime(int size);
+    void measFindTime(int size);
 
     rbtree generateTree(int size);
     bool active;
