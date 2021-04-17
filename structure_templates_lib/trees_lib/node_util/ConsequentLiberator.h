@@ -26,16 +26,9 @@ template<typename T>
 void ConsequentLiberator<T>::free(NodePointer<T> node){
     nodeToFree = node;
     auto parent = nodeToFree->getParent();
-    Side consequentSide = Side::LEFT;
-    if(parent->getRight() ==  nodeToFree)
-        consequentSide = Side::RIGHT;
-    auto child = nodeToFree->get(consequentSide);
-    if(child->isNil())
-        child = nodeToFree->get(!consequentSide);
+    auto child = nodeToFree->getRight();
     child->setParent(parent);
-    parent->setSide(child, !consequentSide);
-    if(currentNode == nodeToFree)
-        currentNode = child;
+    parent->setLeft(child);
 }
 
 template<typename T>

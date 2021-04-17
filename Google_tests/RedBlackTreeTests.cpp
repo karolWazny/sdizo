@@ -191,7 +191,6 @@ TEST(RedBlackTestSuite, NonUniqueKeys){
                 tree.put(i);
         }
     }
-    std::cout << "Druga petla\n";
     for(int i = 0; i < 100; i++)
     {
         ASSERT_TRUE(tree.containsKey(i));
@@ -203,7 +202,6 @@ TEST(RedBlackTestSuite, NonUniqueKeys){
             tree.removeKey(i);
         ASSERT_TRUE(tree.containsKey(i));
     }
-    std::cout << "trzecia petla\n";
     for(int i = 0; i < 100; i++)
     {
         ASSERT_TRUE(tree.containsKey(i));
