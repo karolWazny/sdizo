@@ -26,9 +26,9 @@ public:
     virtual bool isRed();
     virtual void paintBlack();
     virtual void paintRed();
-
+#if DEBUG
     int checkAmountOfBlackToLeaves() override;
-
+#endif
     static RBNodePtr<T> getInstance();
 
 private:
@@ -125,10 +125,12 @@ void RBSentinel<T>::paintRed() {
     black.paintRed();
 }
 
+#if DEBUG
 template<typename T>
 int RBSentinel<T>::checkAmountOfBlackToLeaves() {
     return 1;
 }
+#endif
 
 template<typename T>
 std::string RBSentinel<T>::toString() {

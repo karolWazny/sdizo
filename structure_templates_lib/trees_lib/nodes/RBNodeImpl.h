@@ -28,8 +28,9 @@ public:
     NodePointer<T> getRight() override;
     bool isNil() override;
     std::string toString() override;
-
+#if DEBUG
     int checkAmountOfBlackToLeaves() override;
+#endif
 
 private:
     RBNodePtr<T> sentinel();
@@ -122,6 +123,7 @@ bool RBNodeImpl<T>::isNil() {
     return node->isNil();
 }
 
+#if DEBUG
 template<typename T>
 int RBNodeImpl<T>::checkAmountOfBlackToLeaves() {
     int leftNumber, rightNumber;
@@ -138,7 +140,7 @@ int RBNodeImpl<T>::checkAmountOfBlackToLeaves() {
         leftNumber++;
     return leftNumber;
 }
-
+#endif
 template<typename T>
 std::string RBNodeImpl<T>::toString() {
     std::string output;

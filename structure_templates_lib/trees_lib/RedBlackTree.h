@@ -34,7 +34,9 @@ void RedBlackTree<T>::put(T key) {
     auto putter = RBPutter<T>(root);
     putter.put(key);
     root = putter.obtainRoot();
+#if DEBUG
     rbcast(root)->checkAmountOfBlackToLeaves();
+#endif
 }
 
 template<typename T>
@@ -50,7 +52,9 @@ void RedBlackTree<T>::removeKey(T key) {
     auto remover = RBRemover<T>(root);
     remover.remove(key);
     root = remover.obtainRoot();
-    //rbcast(root)->checkAmountOfBlackToLeaves();//todo przywrócić ten warunek
+#if DEBUG
+    rbcast(root)->checkAmountOfBlackToLeaves();//todo przywrócić ten warunek
+#endif
 }
 
 template<typename T>

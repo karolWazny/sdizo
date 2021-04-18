@@ -5,6 +5,10 @@
 
 int main(){
     srand((unsigned)time(0));
+#if DEBUG
+    std::cout << "Program is in debug mode!" << std::endl;
+    std::cout << "It may affect performance!" << std::endl << std::endl;
+#endif
     auto program = Main();
     return program.run();
 }

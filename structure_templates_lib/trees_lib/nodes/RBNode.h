@@ -27,8 +27,9 @@ public:
     virtual bool isRed() = 0;
     virtual void paintBlack() = 0;
     virtual void paintRed() = 0;
-
+#if DEBUG
     virtual int checkAmountOfBlackToLeaves() = 0;
+#endif
 };
 
 template <typename T>

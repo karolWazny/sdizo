@@ -139,8 +139,14 @@ void RBTreeOperations::measurements() {
                  "3. Dla wyszukiwania elementu.\n";
     int option = readInt();
     std::cout << "Dla jakiej wielkosci struktury chcesz mierzyc czas?\n";
+#if DEBUG
     int options[] = {250, 500, 1250, 2500, 5000};
     int numberOfElements = sizeChoiceMenu(options, 5);
+#else
+    int options[] = {500, 1000, 2500, 5000, 10000};
+    int numberOfElements = sizeChoiceMenu(options, 5);
+#endif
+
     switch(option)
     {
         case 1:

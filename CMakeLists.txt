@@ -19,3 +19,7 @@ add_subdirectory(structure_templates_lib program)
 target_link_libraries(sdizo_1 structure_templates_lib)
 
 add_subdirectory(Google_tests)
+
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+    add_definitions(-DDEBUG=1)
+endif()
