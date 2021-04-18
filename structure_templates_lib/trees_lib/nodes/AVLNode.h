@@ -22,7 +22,18 @@ public:
 
     virtual char getBalanceFactor() = 0;
     virtual void setBalanceFactor(char factor) = 0;
+    void addBalance(Side side);
 };
+
+template<typename T>
+void AVLNode<T>::addBalance(Side side) {
+    auto bf = getBalanceFactor();
+    if(side == Side::RIGHT)
+        bf++;
+    else
+        bf--;
+    setBalanceFactor(bf);
+}
 
 template <typename T>
 AVLNodePtr<T> avlcast(NodePointer<T> node) {

@@ -28,6 +28,8 @@ void AVLPutter<T>::put(T key) {
     auto freshNode = putter.getFreshNode();
     auto restorer = AVLPutRestorer<T>();
     restorer.restoreFrom(avlcast(freshNode));
+    if(freshNode->getParent()->isNil())
+        freshNode->setParent(nullptr);
     currentNode = putter.obtainRoot();
 }
 

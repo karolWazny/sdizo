@@ -4,6 +4,7 @@
 #include "NodeFactory.h"
 #include "NodeImpl.h"
 #include "AVLNodeImpl.h"
+#include "AVLSentinel.h"
 
 template <typename T>
 class AVLFactory : public NodeFactory<T>
@@ -25,12 +26,12 @@ NodePointer<T> AVLFactory<T>::makeNode(T key) {
 
 template<typename T>
 NodePointer<T> AVLFactory<T>::makeSentinel(void) {
-    return Sentinel<T>::getInstance();
+    return AVLSentinel<T>::getInstance();
 }
 
 template<typename T>
 NodePointer<T> AVLFactory<T>::makeSentinel(T) {
-    return NodePointer<T>();
+    return AVLSentinel<T>::getInstance();
 }
 
 template<typename T>

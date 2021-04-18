@@ -8,6 +8,7 @@
 #include "ListOperations.h"
 #include "HeapOperations.h"
 #include "RBTreeOperations.h"
+#include "AVLOperations.h"
 
 using String = std::wstring;
 
@@ -22,6 +23,7 @@ public:
     void listOperations();
     void heapOperations();
     void rbTreeOperations();
+    void avlTreeOperations();
 private:
     bool keepGoing = true;
     String input;
@@ -30,6 +32,7 @@ private:
     ListOperations listOperator;
     HeapOperations heapOperator;
     RBTreeOperations rbOperator;
+    AVLOperations avlOperations;
 };
 
 #endif //SDIZO_1_MAIN_H

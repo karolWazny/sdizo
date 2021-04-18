@@ -11,7 +11,8 @@ add_executable(sdizo_1 program/Main.cpp
         program/RBTreeOperations.cpp
         program/TextFileReader.cpp
         program/StopWatch.cpp
-        program/Operations.cpp)
+        program/Operations.cpp
+        program/AVLOperations.cpp)
 
 include_directories(structure_templates_lib program)
 add_subdirectory(structure_templates_lib program)

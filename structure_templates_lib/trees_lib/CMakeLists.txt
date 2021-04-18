@@ -40,7 +40,9 @@ set(HEADER_FILES
         nodes/AVLNodeImpl.h
         nodes/AVLFactory.h
         AVLPutter.h
-        AVLPutRestorer.h)
+        AVLPutRestorer.h
+        AVLRemover.h
+        nodes/AVLSentinel.h)
 
 set(SOURCE_FILES
         index.cpp

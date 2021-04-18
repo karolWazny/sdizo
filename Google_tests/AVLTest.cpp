@@ -111,9 +111,6 @@ TEST(AVLTestSuite, DeletingReversedAdding){
         tree.removeKey(i);
         for(int j = 0; j <= i; j++)
         {
-            if(j == 99)
-                ASSERT_FALSE(tree.containsKey(99));
-            else
                 ASSERT_FALSE(tree.containsKey(j));
         }
         for(int j = i + 1; j < 100; j++)

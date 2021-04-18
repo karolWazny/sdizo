@@ -2,6 +2,7 @@
 #define SDIZO_1_AVLNODEIMPL_H
 
 #include "trees_lib/nodes/AVLNode.h"
+#include "AVLSentinel.h"
 
 template <typename T>
 class AVLNodeImpl : public AVLNode<T>
@@ -26,11 +27,19 @@ public:
 private:
     std::unique_ptr<Node<T>> node;
     char balanceFactor;
+
+    static NodePointer<T> sentinel;
 };
+
+template <typename T>
+NodePointer<T> AVLNodeImpl<T>::sentinel = AVLSentinel<T>::getInstance();
 
 template<typename T>
 AVLNodeImpl<T>::AVLNodeImpl(Node <T> *nodeImpl) {
     node = std::unique_ptr<Node<T>>(nodeImpl);
+    node->setParent(sentinel);
+    node->setLeft(sentinel);
+    node->setRight(sentinel);
     balanceFactor = 0;
 }
 
@@ -41,7 +50,10 @@ T AVLNodeImpl<T>::getKey() {
 
 template<typename T>
 void AVLNodeImpl<T>::setParent(NodePointer <T> parent) {
-    node->setParent(parent);
+    if(parent)
+        node->setParent(parent);
+    else
+        node->setParent(sentinel);
 }
 
 template<typename T>
@@ -51,7 +63,10 @@ NodePointer <T> AVLNodeImpl<T>::getParent() {
 
 template<typename T>
 void AVLNodeImpl<T>::setLeft(NodePointer <T> left) {
-    node->setLeft(left);
+    if(left)
+        node->setLeft(left);
+    else
+        node->setLeft(sentinel);
 }
 
 template<typename T>
@@ -61,7 +76,10 @@ NodePointer <T> AVLNodeImpl<T>::getLeft() {
 
 template<typename T>
 void AVLNodeImpl<T>::setRight(NodePointer <T> right) {
-    node->setRight(right);
+    if(right)
+        node->setRight(right);
+    else
+        node->setRight(sentinel);
 }
 
 template<typename T>
@@ -88,6 +106,9 @@ std::string AVLNodeImpl<T>::toString() {
         case 1:
             out += "+";
             break;
+        default:
+            out += std::to_string(balanceFactor);
+            break;
     }
     out += "|";
     out += node->toString();
@@ -96,7 +117,7 @@ std::string AVLNodeImpl<T>::toString() {
 
 template<typename T>
 char AVLNodeImpl<T>::getBalanceFactor() {
-    return 0;
+    return balanceFactor;
 }
 
 template<typename T>

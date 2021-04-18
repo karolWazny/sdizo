@@ -41,8 +41,9 @@ void Main::displayMenu() {
     String menuText = L"1. Operacje na tablicy.\n";
     menuText += L"2. Operacje na liscie.\n";
     menuText += L"3. Operacje na kopcu.\n";
-    menuText += L"4. Operacje na drzewie czerwono-czarnym.\n";
-    menuText += L"5. Zakoncz program.\n";
+    menuText += L"4. Operacje na drzewie czerwono-czarnym.\n"
+                "5. Operacje na drzewie AVL.\n";
+    menuText += L"6. Zakoncz program.\n";
     std::wcout << menuText;
 }
 
@@ -64,6 +65,9 @@ void Main::interpretInput() {
                 rbTreeOperations();
                 break;
             case 5:
+                avlTreeOperations();
+                break;
+            case 6:
                 keepGoing = false;
                 break;
             default:
@@ -89,4 +93,8 @@ void Main::heapOperations() {
 
 void Main::rbTreeOperations() {
     rbOperator.run();
+}
+
+void Main::avlTreeOperations() {
+    avlOperations.run();
 }

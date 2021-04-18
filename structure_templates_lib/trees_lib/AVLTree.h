@@ -6,6 +6,7 @@
 #include "trees_lib/AVLPutter.h"
 #include "trees_lib/rbutil/RBRemover.h"
 #include "trees_lib/node_util/TreePrinter.h"
+#include "AVLRemover.h"
 
 template <typename T>
 class AVLTree {
@@ -43,7 +44,9 @@ bool AVLTree<T>::containsKey(T key) {
 
 template<typename T>
 void AVLTree<T>::removeKey(T key) {
-
+    auto remover = AVLRemover<T>(root);
+    remover.remove(key);
+    root = remover.obtainRoot();
 }
 
 template<typename T>

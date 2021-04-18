@@ -29,9 +29,7 @@ TEST(RedBlackTestSuite, RemoveRoot){
     ASSERT_TRUE(tree.containsKey(10));
     ASSERT_TRUE(tree.containsKey(60));
     ASSERT_TRUE(tree.containsKey(40));
-    std::cout << tree.getRepresentation() << std::endl;
     tree.removeKey(23);
-    std::cout << tree.getRepresentation() << std::endl;
     ASSERT_FALSE(tree.containsKey(23));
     ASSERT_TRUE(tree.containsKey(50));
     ASSERT_TRUE(tree.containsKey(10));
