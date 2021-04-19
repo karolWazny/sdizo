@@ -23,7 +23,7 @@ private:
     void measRemTime();
     unsigned long long measRemMax(int size);
     unsigned long long measRemAv(int size);
-    static heap generateHeap(int size);
+    heap generateHeap(int size);
 
     bool active;
     heap mHeap;

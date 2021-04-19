@@ -169,7 +169,7 @@ void RBTreeOperations::measPutTime(int numberOfElements) {
     {
         auto measurementStructure = generateTree(numberOfElements);
         std::cout << "|";//todo
-        int32_t elementToPut = rand() % (numberOfElements/2);
+        int32_t elementToPut = randomInt(numberOfElements/2);
         StopWatch watch;
         watch.start();
         measurementStructure.put(elementToPut);
@@ -191,7 +191,7 @@ rbtree RBTreeOperations::generateTree(int size) {
     auto measurementsStructure = rbtree();
     for(int j = 0; j < size; j++)
     {
-        measurementsStructure.put(rand() % (size/2));
+        measurementsStructure.put(randomInt(size/2));
     }
     return measurementsStructure;
 }
@@ -202,7 +202,7 @@ void RBTreeOperations::measRemTime(int numberOfElements) {
     {
         auto measurementStructure = generateTree(numberOfElements);
         std::cout << "|";//todo
-        int32_t elementToRemove = rand() % (numberOfElements / 2);
+        int32_t elementToRemove = randomInt(numberOfElements / 2);
         StopWatch watch;
         watch.start();
         measurementStructure.removeKey(elementToRemove);
@@ -226,7 +226,7 @@ void RBTreeOperations::measFindTime(int numberOfElements) {
     {
         auto measurementStructure = generateTree(numberOfElements);
         std::cout << "|";//todo
-        int32_t elementToFind = rand() % numberOfElements;
+        int32_t elementToFind = randomInt(numberOfElements);
         StopWatch watch;
         bool contains;
         watch.start();

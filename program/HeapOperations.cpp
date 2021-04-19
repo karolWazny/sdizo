@@ -166,7 +166,7 @@ void HeapOperations::measPutTime() {
     {
         auto measurementStructure = generateHeap(numberOfElements);
         std::cout << "|";//todo
-        int32_t elementToPut = rand() % (numberOfElements/2);
+        int32_t elementToPut = randomInt(numberOfElements/2);
         StopWatch watch;
         watch.start();
         measurementStructure.add(elementToPut);
@@ -188,7 +188,7 @@ heap HeapOperations::generateHeap(int size) {
     auto measurementsHeap = heap();
     for(int j = 0; j < size; j++)
     {
-        measurementsHeap.add(rand() % (size/2));
+        measurementsHeap.add(randomInt(size/2));
     }
     return measurementsHeap;
 }
@@ -202,7 +202,7 @@ void HeapOperations::measFindTime() {
     {
         auto measurementStructure = generateHeap(numberOfElements);
         std::cout << "|";//todo
-        int32_t elementToFind = rand() % numberOfElements;
+        int32_t elementToFind = randomInt(numberOfElements);
         StopWatch watch;
         //contains jest sztuczną zmienną zapobiegającą wycięciu
         //wyszukania przez kompilator przy optymalizacji kodu
@@ -285,7 +285,7 @@ unsigned long long HeapOperations::measRemAv(int size) {
     {
         auto measurementsHeap = generateHeap(size);
         std::cout << "|";//todo
-        int32_t elementToRemove = rand() % (size / 2);
+        int32_t elementToRemove = randomInt(size / 2);
         StopWatch watch;
         watch.start();
         measurementsHeap.remove(elementToRemove);
