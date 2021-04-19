@@ -41,9 +41,14 @@ void Main::displayMenu() {
     String menuText = L"1. Operacje na tablicy.\n";
     menuText += L"2. Operacje na liscie.\n";
     menuText += L"3. Operacje na kopcu.\n";
+#if DEBUG
     menuText += L"4. Operacje na drzewie czerwono-czarnym.\n"
                 "5. Operacje na drzewie AVL.\n";
     menuText += L"6. Zakoncz program.\n";
+#else
+    menuText += L"4. Operacje na drzewie czerwono-czarnym.\n";
+    menuText += L"5. Zakoncz program.\n";
+#endif
     std::wcout << menuText;
 }
 
@@ -64,12 +69,19 @@ void Main::interpretInput() {
             case 4:
                 rbTreeOperations();
                 break;
-            case 5:
+#if DEBUG
+                case 5:
                 avlTreeOperations();
                 break;
             case 6:
                 keepGoing = false;
                 break;
+#else
+            case 5:
+                keepGoing = false;
+                break;
+#endif
+
             default:
                 throw 4;
         }
