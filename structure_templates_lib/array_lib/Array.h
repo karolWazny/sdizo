@@ -1,11 +1,9 @@
-//
-// Created by admin on 02.03.2021.
-//
-
 #ifndef SDIZO_1_ARRAY_H
 #define SDIZO_1_ARRAY_H
 #include <memory>
 #include <string>
+
+//szablon klasy implementującej tablicę dynamiczną
 template <typename T>
 class Array
 {
@@ -30,10 +28,12 @@ private:
     int length;
 };
 
+//wyjątek oznaczający żądanie elementu o indeksie niebędącym w tablicy
 class IndexOutOfBoundException : public std::exception
 {
 
 };
+
 
 template <typename T>
 Array<T>::Array()
@@ -42,36 +42,44 @@ Array<T>::Array()
     elements = std::make_unique<T[]>(length);
 }
 
+//metoda do dodania elementu na końcu
 template<typename T>
 void Array<T>::pushBack(T element)
 {
     putAtPosition(element, length);
 }
 
+//metoda do usunięcia elementu na początku
 template <typename T>
 T Array<T>::removeFirst()
 {
     return removeAt(0);
 }
 
+//metoda usuwająca ostatni element
 template <typename T>
 T Array<T>::removeLast()
 {
     return removeAt(length - 1);
 }
 
+//metoda dodająca element na początku tablicy
 template <typename T>
 void Array<T>::pushFront(T element)
 {
     putAtPosition(element, 0);
 }
 
+//metoda zwracająca element o danym indeksie przez wartość
 template <typename T>
 T Array<T>::get(const int index)
 {
+    if(index >= length || index < 0)
+        throw IndexOutOfBoundException();
     return elements[index];
 }
 
+//metoda do usuwania elementu po indeksie
 template <typename T>
 T Array<T>::removeAt(const int index)
 {
@@ -90,6 +98,7 @@ T Array<T>::removeAt(const int index)
     return buffer;
 }
 
+//metoda do zamiany dwóch elementów miejscami
 template<typename T>
 void Array<T>::swap(const int index1, const int index2)
 {
@@ -98,6 +107,7 @@ void Array<T>::swap(const int index1, const int index2)
     elements[index2] = buffer;
 }
 
+//metoda wstawiająca nowy element na danej pozycji
 template<typename T>
 void Array<T>::putAtPosition(T element, const int index)
 {
@@ -159,14 +169,22 @@ bool Array<T>::contains(T element) {
     return false;
 }
 
+//metoda pozwalająca stworzyć tablicę zadanej wielkości;
+//zaimplementowana aby umożliwić szybsze budowanie struktury
+//z pliku i generowanie dużych tablic do testów
 template<typename T>
 Array<T>::Array(int initialSize) {
     length = initialSize;
     elements = std::make_unique<T[]>(initialSize);
 }
 
+//operator dostępu do elementu po indeksie;
+//zwraca obiekt przez referencję, działanie jak
+//ten sam operator dla tablicy
 template<typename T>
 T &Array<T>::operator[](int index) {
+    if(index < 0 || index >= length)
+        throw IndexOutOfBoundException();
     return elements[index];
 }
 
