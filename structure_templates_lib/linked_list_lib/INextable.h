@@ -1,12 +1,8 @@
-//
-// Created by admin on 02.03.2021.
-//
-
 #ifndef SDIZO_1_INEXTABLE_H
 #define SDIZO_1_INEXTABLE_H
 
 #include <memory>
-
+//interfejs implementowany przez elementy listy i strażnika
 template <typename T>
 class LinkedListItem;
 

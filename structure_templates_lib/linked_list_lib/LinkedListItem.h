@@ -38,7 +38,7 @@ public:
     void swap(std::shared_ptr<INextable<type>>) override;
     bool hasNext() override;
 };
-
+//klasa wewnętrzna odpowiedzialna za zamienianie elementów miejscami
 template<typename type>
 LinkedListItem<type>::Swapper::Swapper(LinkedListItem<type> *owningItem) {
     owner = owningItem;
@@ -53,7 +53,7 @@ void LinkedListItem<type>::Swapper::swapWith(std::shared_ptr<INextable<type>>rep
     swapPointersInConsequents();
     swapPointersToPredecessors();
 }
-
+//drobne metody zamieniające wskaźniki, co skutkuje zamianą miejscami elementów w liście
 template<typename type>
 void LinkedListItem<type>::Swapper::swapPointersInPredecessors() {
     auto replacementPredecessor = replacement->getPrevious();
@@ -128,7 +128,7 @@ LinkedListItem<type>::LinkedListItem(type content, std::shared_ptr<INextable<typ
     next = std::shared_ptr<LinkedListItem<type>>(nullptr);
     previous = pointer;
 }
-
+//metoda tworząca nowy element i umieszczająca go na pozycji kolejnej w liście
 template<typename type>
 void LinkedListItem<type>::putAfter(type nextItem)
 {
