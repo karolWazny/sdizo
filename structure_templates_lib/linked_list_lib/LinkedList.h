@@ -4,6 +4,7 @@
 #include "LinkedListItem.h"
 #include <string>
 
+//szablon klasy listy podwójnie wiązanej
 template <typename type>
 class LinkedList
 {
@@ -36,11 +37,13 @@ public:
     std::string toString();
 private:
     std::weak_ptr<INextable<type>> lastIndex;
+    //wartownik trzymający wskaźnik na pierwszy element;
+    //ułatwia obsługę dodawania i usuwania pierwszego elementu
     std::shared_ptr< Nexter > guard;
     int length;
     std::shared_ptr< INextable<type> > getItem(int index);
 };
-
+//dostęp do elementu listy na danej pozycji
 template<typename type>
 std::shared_ptr< INextable<type> > LinkedList<type>::getItem(const int index)
 {
@@ -53,6 +56,7 @@ std::shared_ptr< INextable<type> > LinkedList<type>::getItem(const int index)
     return buffer;
 }
 
+//dodanie elementu na danej pozycji
 template<typename type>
 void LinkedList<type>::addAtPosition(type content, int index)
 {
@@ -67,6 +71,7 @@ void LinkedList<type>::addAtPosition(type content, int index)
     }
 }
 
+//zamiana dwóch elementów miejscami
 template<typename type>
 void LinkedList<type>::swap(int index1, int index2) noexcept(false)
 {
@@ -98,6 +103,7 @@ void LinkedList<type>::swap(int index1, int index2) noexcept(false)
     }
 }
 
+//usunięcie elementu na danej pozycji
 template<typename type>
 type LinkedList<type>::removeAt(int index)
 {
@@ -108,6 +114,7 @@ type LinkedList<type>::removeAt(int index)
     return out;
 }
 
+//dodanie elementu na końcu listy
 template<typename type>
 void LinkedList<type>::pushBack(type element)
 {
@@ -122,6 +129,7 @@ void LinkedList<type>::pushBack(type element)
     length++;
 }
 
+//dodanie elementu na początku listy
 template <typename T>
 void LinkedList<T>::pushFront(T element)
 {
@@ -136,12 +144,14 @@ void LinkedList<T>::pushFront(T element)
     length++;
 }
 
+//usunięcie elementu z głowy listy
 template <typename T>
 T LinkedList<T>::removeFirst()
 {
     return removeAt(0);
 }
 
+//usunięcie elementu z ogona
 template <typename T>
 T LinkedList<T>::removeLast()
 {
@@ -152,6 +162,7 @@ T LinkedList<T>::removeLast()
     return buffer->getContent();
 }
 
+//dostęp do klucza w elemencie na danej pozycji
 template<typename type>
 type LinkedList<type>::get(int index) {
     return getItem(index)->getContent();
@@ -176,7 +187,9 @@ LinkedList<type>::LinkedList()
     guard = std::make_unique<Nexter>();
     guard->setMThis(guard);
 }
-
+//definicja klasy wewnętrznej -  strażnika
+//trzymającego wskaźnik na pierwszy element;
+//implementuje ten sam interfejs co elementy listy
 template<typename type>
 LinkedList<type>::Nexter::Nexter()
 {
@@ -201,6 +214,8 @@ bool LinkedList<type>::Nexter::hasNext()
     return pointer != nullptr;
 }
 
+//metoda strażnika tworząca i wstawiająca nowy element listy
+//o zadanym kluczu za strażnikiem
 template<typename type>
 void LinkedList<type>::Nexter::putAfter(type element) {
     auto buffer = std::make_shared<LinkedListItem<type>>(element);
@@ -235,6 +250,7 @@ std::string LinkedList<T>::toString()
     return output + "]";
 }
 
+//usunięcie elementu o danym kluczu
 template<typename type>
 bool LinkedList<type>::remove(type element)
 {
@@ -259,6 +275,8 @@ bool LinkedList<type>::remove(type element)
     return false;
 }
 
+// metoda wstawiająca nowy element listy za elementem o danym kluczu;
+//jezeli ten klucz nie występuje w liście, element zostaje umieszczony na początku
 template<typename type>
 void LinkedList<type>::putAfter(type whereToPut, type elementToAdd)
 {
