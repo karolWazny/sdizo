@@ -3,6 +3,7 @@
 
 #include "INextable.h"
 
+//szablon klasy elementu listy
 template <typename type>
 class LinkedListItem : public INextable<type>
 {

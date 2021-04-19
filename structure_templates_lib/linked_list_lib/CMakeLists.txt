@@ -7,7 +7,6 @@ set(HEADER_FILES
         LinkedList.h
         LinkedListItem.h
         INextable.h
-        LinkedListIterator.h
         )
 
 set(SOURCE_FILES
