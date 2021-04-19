@@ -19,18 +19,18 @@ private:
     void fromFile();
     void measurements();
     void measPutTime(int);
-    static unsigned long long measPutBeg(int);
-    static unsigned long long measPutEnd(int);
-    static unsigned long long measPutMid(int);
+    unsigned long long measPutBeg(int);
+    unsigned long long measPutEnd(int);
+    unsigned long long measPutMid(int);
 
     void measRemTime(int size);
-    static unsigned long long measRemBeg(int);
-    static unsigned long long measRemEnd(int);
-    static unsigned long long measRemMid(int);
+    unsigned long long measRemBeg(int);
+    unsigned long long measRemEnd(int);
+    unsigned long long measRemMid(int);
 
     void measFindTime(int size);
 
-    static list generateList(int size);
+    list generateList(int size);
 
     bool active{};
     list linkedList;

@@ -10,11 +10,11 @@ void StopWatch::start() {
 
 void StopWatch::stop() {
     QueryPerformanceCounter(&stopStamp);
-    timeElapsedMicrosec.QuadPart = stopStamp.QuadPart - startStamp.QuadPart;
-    timeElapsedMicrosec.QuadPart *= 1000000000000;
-    timeElapsedMicrosec.QuadPart /= frequency.QuadPart;
+    timeElapsedPiccosec.QuadPart = stopStamp.QuadPart - startStamp.QuadPart;
+    timeElapsedPiccosec.QuadPart *= 1000000000000;//10^6 daje czas w mikrosekundach, 10^12 to piko
+    timeElapsedPiccosec.QuadPart /= frequency.QuadPart;
 }
 
-unsigned long long StopWatch::getLastMeasurmentMicrosec() {
-    return timeElapsedMicrosec.QuadPart;
+unsigned long long StopWatch::getLastMeasurmentPiccosec() {
+    return timeElapsedPiccosec.QuadPart;
 }

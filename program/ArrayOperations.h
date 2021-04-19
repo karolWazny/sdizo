@@ -19,16 +19,16 @@ private:
     void timeMeasurment();
     void measureFindingTime();
     void measurePuttingTime();
-    static unsigned long long measPutBeg(int size);
-    static unsigned long long measPutMid(int size);
-    static unsigned long long measPutEnd(int size);
+    unsigned long long measPutBeg(int size);
+    unsigned long long measPutMid(int size);
+    unsigned long long measPutEnd(int size);
     void measureRemovingTime();
 
-    static unsigned long long measRemBeg(int size);
-    static unsigned long long measRemMid(int size);
-    static unsigned long long measRemEnd(int size);
+    unsigned long long measRemBeg(int size);
+    unsigned long long measRemMid(int size);
+    unsigned long long measRemEnd(int size);
 
-    static array generateArray(int param);
+     array generateArray(int param);
 
     array tab = array();
 

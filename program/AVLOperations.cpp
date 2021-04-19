@@ -174,8 +174,8 @@ void AVLOperations::measPutTime(int numberOfElements) {
         watch.start();
         measurementStructure.put(elementToPut);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -207,8 +207,8 @@ void AVLOperations::measRemTime(int numberOfElements) {
         watch.start();
         measurementStructure.removeKey(elementToRemove);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -234,8 +234,8 @@ void AVLOperations::measFindTime(int numberOfElements) {
         watch.stop();
         if(contains)
             tree.put(0);
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;

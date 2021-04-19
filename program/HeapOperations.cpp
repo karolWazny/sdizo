@@ -171,8 +171,8 @@ void HeapOperations::measPutTime() {
         watch.start();
         measurementStructure.add(elementToPut);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -214,8 +214,8 @@ void HeapOperations::measFindTime() {
         //pozornie niepotrzebnej zmiennej contains
         if(contains)
             measurementStructure.remove(10);
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -268,8 +268,8 @@ unsigned long long HeapOperations::measRemMax(int size) {
         watch.start();
         measurementsHeap.extractMax();
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -290,8 +290,8 @@ unsigned long long HeapOperations::measRemAv(int size) {
         watch.start();
         measurementsHeap.remove(elementToRemove);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;

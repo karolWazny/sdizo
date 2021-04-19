@@ -2,6 +2,7 @@
 #define SDIZO_1_OPERATIONS_H
 
 #include <string>
+#include "Randomizer.h"
 
 class Operations {
 public:
@@ -11,8 +12,11 @@ public:
     int readInt();
     std::string readStr();
     int sizeChoiceMenu(int[], int);
+    int randomInt();
+    int randomInt(int);
 protected:
     std::string input;
+    Randomizer randomizer = Randomizer();
 };
 
 

@@ -12,7 +12,8 @@ add_executable(sdizo_1 program/Main.cpp
         program/TextFileReader.cpp
         program/StopWatch.cpp
         program/Operations.cpp
-        program/AVLOperations.cpp)
+        program/AVLOperations.cpp
+        program/Randomizer.cpp)
 
 include_directories(structure_templates_lib program)
 add_subdirectory(structure_templates_lib program)

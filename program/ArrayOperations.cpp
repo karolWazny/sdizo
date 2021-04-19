@@ -202,27 +202,27 @@ void ArrayOperations::timeMeasurment() {
 
 void ArrayOperations::measureFindingTime() {
     std::cout << "Dla ilu elementow chcesz zmierzyc czas wyszukiwania?\n";
-    int options[] = {2500, 5000, 12500, 25000, 50000};
+    int options[] = {25000, 50000, 125000, 250000, 500000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     unsigned long long average = 0;
     for(int i = 0; i < 128; i++)
     {
         array measurementsArray = generateArray(numberOfElements);
         std::cout << "|";//todo
-        int32_t seekedElement = rand() % (numberOfElements/2);
+        int32_t seekedElement = randomInt(numberOfElements);
         StopWatch watch;
         bool contains;
         watch.start();
         contains = measurementsArray.contains(seekedElement);
         watch.stop();
         if(contains)
-            average += watch.getLastMeasurmentMicrosec();
+            average += watch.getLastMeasurmentPiccosec();
         else
         {
-            average += watch.getLastMeasurmentMicrosec();
+            average += watch.getLastMeasurmentPiccosec();
             watch.start();
         }
-        if(!watch.getLastMeasurmentMicrosec())
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -238,7 +238,7 @@ void ArrayOperations::measureFindingTime() {
 
 void ArrayOperations::measurePuttingTime() {
     std::cout << "Dla jakiego rozmiaru struktury chcesz mierzyc czas?\n";
-    int options[] = {2500, 5000, 12500, 25000, 50000};
+    int options[] = {250000, 500000, 1250000, 2500000, 5000000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     std::cout << "Gdzie chcesz wstawiac nowy element?\n"
                  "1. Na poczatku.\n"
@@ -277,7 +277,7 @@ array ArrayOperations::generateArray(int numberOfElements) {
     array measurementsArray(numberOfElements);
     for(int j = 0; j < numberOfElements; j++)
     {
-        measurementsArray[j] = (rand() % (numberOfElements/2));
+        measurementsArray[j] = (randomInt(numberOfElements/2));
     }
     return measurementsArray;
 }
@@ -288,13 +288,13 @@ unsigned long long ArrayOperations::measPutBeg(int size) {
     {
         array measurementsArray = generateArray(size);
         std::cout << "|";//todo
-        int32_t elementToPut = rand() % (size/2);
+        int32_t elementToPut = randomInt(size/2);
         StopWatch watch;
         watch.start();
         measurementsArray.pushFront(elementToPut);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -310,13 +310,13 @@ unsigned long long ArrayOperations::measPutMid(int size) {
     {
         array measurementsArray = generateArray(size);
         std::cout << "|";//todo
-        int32_t elementToPut = rand() % (size/2);
+        int32_t elementToPut = randomInt(size/2);
         StopWatch watch;
         watch.start();
         measurementsArray.putAtPosition(4, size/2);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -332,13 +332,13 @@ unsigned long long ArrayOperations::measPutEnd(int size) {
     {
         array measurementsArray = generateArray(size);
         std::cout << "|";//todo
-        int32_t elementToPut = rand() % (size/2);
+        int32_t elementToPut = randomInt(size/2);
         StopWatch watch;
         watch.start();
         measurementsArray.pushBack(elementToPut);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -350,7 +350,7 @@ unsigned long long ArrayOperations::measPutEnd(int size) {
 
 void ArrayOperations::measureRemovingTime() {
     std::cout << "Dla jakiej ilosci danych w tablicy chcesz mierzyc czas?\n";
-    int options[] = {2500, 5000, 12500, 25000, 50000};
+    int options[] = {250000, 500000, 1250000, 2500000, 5000000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     std::cout << "Skad chcesz usuwac element?\n"
                  "1. Z poczatku.\n"
@@ -394,8 +394,8 @@ unsigned long long ArrayOperations::measRemBeg(int size) {
         watch.start();
         measurementsArray.removeFirst();
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -416,8 +416,8 @@ unsigned long long ArrayOperations::measRemMid(int size) {
         watch.start();
         measurementsArray.removeAt(position);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -437,8 +437,8 @@ unsigned long long ArrayOperations::measRemEnd(int size) {
         watch.start();
         measurementsArray.removeLast();
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;

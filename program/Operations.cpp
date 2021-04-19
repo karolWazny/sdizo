@@ -58,3 +58,11 @@ std::string Operations::readStr() {
     read();
     return input;
 }
+
+int Operations::randomInt() {
+    return randomizer.getInt();
+}
+
+int Operations::randomInt(int max) {
+    return randomizer.getInt(max);
+}

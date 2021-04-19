@@ -114,7 +114,6 @@ void AVLPutRestorer<T>::performRotations() {
         currentNode = RootFinder<T>(currentParent).find();
         currentParent->setBalanceFactor(b);
         currentGrand->setBalanceFactor(a);
-
     }
 
 }

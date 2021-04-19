@@ -178,7 +178,7 @@ void ListOperations::measurements() {
                  "3. Wyszukanie elementu.\n";
     int option = readInt();
     std::cout << "Dla jakiego rozmiaru struktury chcesz mierzyc czas?\n";
-    int options[] = {2500, 5000, 12500, 25000, 50000};
+    int options[] = {250000, 500000, 1250000, 2500000, 5000000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     switch(option)
     {
@@ -222,7 +222,7 @@ void ListOperations::measPutTime(int size) {
         default:
             throw 4;
     }
-    text += "listy o dlugosci ";
+    text += " listy o dlugosci ";
     text += std::to_string(size);
     text += " to ";
     text += std::to_string(output);
@@ -240,8 +240,8 @@ unsigned long long ListOperations::measPutBeg(int size) {
         watch.start();
         measurementsStructure.pushFront(89);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -255,7 +255,7 @@ list ListOperations::generateList(int size) {
     auto measurementsStructure = list();
     for(int j = 0; j < size; j++)
     {
-        measurementsStructure.pushBack(rand() % (size / 2));
+        measurementsStructure.pushBack(randomInt(size / 2));
     }
     return measurementsStructure;
 }
@@ -270,8 +270,8 @@ unsigned long long ListOperations::measPutEnd(int size) {
         watch.start();
         measurementsStructure.pushBack(89);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -293,8 +293,8 @@ unsigned long long ListOperations::measPutMid(int size) {
         //dodajemy dokładnie w połowie listy
         measurementsStructure.addAtPosition(89, index);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -347,8 +347,8 @@ unsigned long long ListOperations::measRemBeg(int size) {
         watch.start();
         measurementsStructure.removeFirst();
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -368,8 +368,8 @@ unsigned long long ListOperations::measRemEnd(int size) {
         watch.start();
         measurementsStructure.removeLast();
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -390,8 +390,8 @@ unsigned long long ListOperations::measRemMid(int size) {
         watch.start();
         measurementsStructure.removeAt(index);
         watch.stop();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
@@ -408,15 +408,15 @@ void ListOperations::measFindTime(int size) {
         auto measurementsStructure = generateList(size);
         std::cout << "|";//todo
         StopWatch watch;
-        int32_t elementToFind = rand() % size;
+        int32_t elementToFind = randomInt(size);
         bool contains;
         watch.start();
         contains = measurementsStructure.contains(elementToFind);
         watch.stop();
         if(contains)
             measurementsStructure.removeFirst();
-        average += watch.getLastMeasurmentMicrosec();
-        if(!watch.getLastMeasurmentMicrosec())
+        average += watch.getLastMeasurmentPiccosec();
+        if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;

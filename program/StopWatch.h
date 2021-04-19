@@ -8,12 +8,12 @@ public:
     StopWatch();
     void start();
     void stop();
-    unsigned long long getLastMeasurmentMicrosec();
+    unsigned long long getLastMeasurmentPiccosec();
 private:
     LARGE_INTEGER startStamp;
     LARGE_INTEGER stopStamp;
     LARGE_INTEGER frequency;
-    LARGE_INTEGER timeElapsedMicrosec;
+    LARGE_INTEGER timeElapsedPiccosec;
 };
 
 
