@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 
+//szablona klasy kopca binarnego (implementacja tablicowa)
 template <typename T>
 class BinaryHeap
 {
@@ -35,6 +36,7 @@ BinaryHeap<T>::BinaryHeap() {
     reallocateContent();
 }
 
+//metoda dodania elementu do kopca
 template<typename T>
 void BinaryHeap<T>::add(T element) {
     size++;
@@ -43,6 +45,7 @@ void BinaryHeap<T>::add(T element) {
     cascadeUp();
 }
 
+//metoda przenosząca kopiec przy zmianie rozmiaru
 template<typename T>
 void BinaryHeap<T>::reallocateContent() {
     auto buffer = std::make_unique<T[]>(size);
@@ -53,6 +56,7 @@ void BinaryHeap<T>::reallocateContent() {
     content = std::move(buffer);
 }
 
+//odbudowanie własności kopca od dołu po dodaniu nowego elementu
 template<typename T>
 void BinaryHeap<T>::cascadeUp() {
     int childPosition = size - 1;
@@ -67,6 +71,7 @@ void BinaryHeap<T>::cascadeUp() {
     }
 }
 
+//metoda pozwalająca zamienić dwa elementy miejscami
 template<typename T>
 void BinaryHeap<T>::swap(const int position1, const int position2) {
     T buffer = content[position1];
@@ -74,6 +79,7 @@ void BinaryHeap<T>::swap(const int position1, const int position2) {
     content[position2] = buffer;
 }
 
+//metoda obliczająca indeks rodzica danego elementu w tablicy
 template<typename T>
 int BinaryHeap<T>::calculateParentPosition(const int childPosition) {
     int parentPosition = (childPosition - 1) >> 1;
@@ -84,6 +90,7 @@ int BinaryHeap<T>::calculateParentPosition(const int childPosition) {
     return parentPosition;
 }
 
+//metoda usuwająca element po kluczu
 template<typename T>
 bool BinaryHeap<T>::remove(T element) {
     int position = findPositionOfElementInSubtree(0, element);
@@ -96,6 +103,8 @@ bool BinaryHeap<T>::remove(T element) {
     return true;
 }
 
+//metoda zwracająca indeks elementu o danej wartości w poddrzewie zaczynającym się od danego węzła;
+//jeżeli poddrzewo nie zawiera elementu, zwraca -1
 template<typename T>
 int BinaryHeap<T>::findPositionOfElementInSubtree(const int subtreeRootPosition, T element) {
     if((subtreeRootPosition >= size) || (content[subtreeRootPosition] < element))
@@ -126,11 +135,14 @@ int BinaryHeap<T>::calculateRightChildPosition(const int parentPosition) {
     return calculateLeftChildPosition(parentPosition) + 1;
 }
 
+
 template<typename T>
 bool BinaryHeap<T>::contains(T element) {
     return findPositionOfElementInSubtree(0, element) > -1;
 }
 
+//metoda przywracająca własność kopca po usunięciu eolementu z korzenia i zastąpieniu go
+//ostatnim elementem w tablicy
 template<typename T>
 void BinaryHeap<T>::cascadeDownFrom(const int position) {
     int rightChildPosition = calculateRightChildPosition(position);
@@ -153,12 +165,12 @@ void BinaryHeap<T>::cascadeDownFrom(const int position) {
         cascadeDownFrom(biggerChildPosition);
     }
 }
-
+//zwraca wartosc elementu w korzeniu
 template<typename T>
 T BinaryHeap<T>::getMax() {
     return content[0];
 }
-
+//usuwa i zwraca element z korzenia
 template<typename T>
 T BinaryHeap<T>::extractMax() {
     T out = getMax();
@@ -173,7 +185,7 @@ template<typename T>
 int BinaryHeap<T>::getSize() {
     return size;
 }
-
+//zwraca reprezentacje stringową kopca; jak w tablicy
 template<typename T>
 std::string BinaryHeap<T>::getRepresentation() {
     std::string out;
