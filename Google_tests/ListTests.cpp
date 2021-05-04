@@ -5,13 +5,19 @@
 TEST(LinkedListTestSuite, ContainsFalse){ // 12/0/2020 -> 0
     auto list = LinkedList<int>();
     ASSERT_FALSE(list.contains(5));
+    ASSERT_TRUE(list.isEmpty());
 }
 
 TEST(LinkedListTestSuite, ContainsTrue){ // 12/0/2020 -> 0
     auto list = LinkedList<int>();
     for(int i = 0; i < 5; i++)
     {
+        ASSERT_EQ(list.getLength(), i);
+        ASSERT_FALSE(list.contains(i));
         list.pushBack(i);
+        ASSERT_TRUE(list.contains(i));
+        ASSERT_FALSE(list.isEmpty());
+        ASSERT_EQ(list.getLength(), i+1);
     }
     ASSERT_TRUE(list.contains(3));
 }
@@ -144,4 +150,63 @@ TEST(LinkedListTestSuite, SwapWithTheLast){
     list.swap(1,4);
     ASSERT_EQ(list.get(1), 4);
     ASSERT_EQ(list.removeLast(), 1);
+}
+
+TEST(LinkedListTestSuite, RemoveFirstLot){
+    auto list = LinkedList<int>();
+    for(int i = 0; i < 150; i++)
+    {
+        list.pushBack(i);
+        for(int k = 0; k <= i; k++)
+        {
+            ASSERT_TRUE(list.contains(k));
+        }
+        for(int k = i + 1; k < 150; k++)
+        {
+            ASSERT_FALSE(list.contains(k));
+        }
+    }
+    while(!list.isEmpty())
+    {
+        list.removeFirst();
+    }
+}
+
+TEST(LinkedListTestSuite, RemoveLastLot){
+    auto list = LinkedList<int>();
+    for(int i = 0; i < 150; i++)
+    {
+        list.pushBack(i);
+        for(int k = 0; k <= i; k++)
+        {
+            ASSERT_TRUE(list.contains(k));
+        }
+        for(int k = i + 1; k < 150; k++)
+        {
+            ASSERT_FALSE(list.contains(k));
+        }
+    }
+    while(!list.isEmpty())
+    {
+        list.removeLast();
+    }
+}
+
+TEST(LinkedListTestSuite, PutAfterLength){
+    auto list = LinkedList<int>();
+    for(int i = 0; i < 150; i++)
+    {
+        list.pushBack(i);
+        for(int k = 0; k <= i; k++)
+        {
+            ASSERT_TRUE(list.contains(k));
+        }
+        for(int k = i + 1; k < 150; k++)
+        {
+            ASSERT_FALSE(list.contains(k));
+        }
+    }
+    ASSERT_EQ(list.getLength(), 150);
+    list.putAfter(10, 40);
+    ASSERT_EQ(list.getLength(), 151);
 }

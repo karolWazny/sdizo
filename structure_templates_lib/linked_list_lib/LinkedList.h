@@ -290,6 +290,7 @@ void LinkedList<type>::putAfter(type whereToPut, type elementToAdd)
             {
                 lastIndex = buffer->getNext();
             }
+            length++;
             return;
         }
         buffer = buffer->getNext();

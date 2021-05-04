@@ -15,8 +15,8 @@ class RedBlackTree
 public:
     RedBlackTree();
     void put(T key);
-    bool containsKey(T key);
-    void removeKey(T key);
+    bool contains(T key);
+    void remove(T key);
     string toString();
     string getRepresentation();
     bool isEmpty();
@@ -40,7 +40,7 @@ void RedBlackTree<T>::put(T key) {
 }
 
 template<typename T>
-bool RedBlackTree<T>::containsKey(T key) {
+bool RedBlackTree<T>::contains(T key) {
     auto finder = KeyFinder<T>(root);
     finder.setDesiredKey(key);
     finder.find();
@@ -48,7 +48,7 @@ bool RedBlackTree<T>::containsKey(T key) {
 }
 
 template<typename T>
-void RedBlackTree<T>::removeKey(T key) {
+void RedBlackTree<T>::remove(T key) {
     auto remover = RBRemover<T>(root);
     remover.remove(key);
     root = remover.obtainRoot();

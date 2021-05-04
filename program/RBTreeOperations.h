@@ -24,7 +24,7 @@ private:
     void measRemTime(int size);
     void measFindTime(int size);
 
-    rbtree generateTree(int size);
+    rbtree* generateTree(int size);
     bool active;
 
     rbtree tree;

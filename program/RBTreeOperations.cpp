@@ -78,13 +78,13 @@ void RBTreeOperations::removeElement() {
     std::getline(std::cin, input);
     int keyToRemove;
     keyToRemove = std::stoi(input);
-    if(!tree.containsKey(keyToRemove)){
+    if(!tree.contains(keyToRemove)){
         std::cout << "Drzewo nie zawiera klucza o wartosci "
             << std::to_string(keyToRemove) << ".\n"
             << "Operacje anulowano.\n";
         return;
     }
-    tree.removeKey(keyToRemove);
+    tree.remove(keyToRemove);
     std::cout << "Usunieto klucz o wartosci "
         << std::to_string(keyToRemove)
         << ".\n";
@@ -96,7 +96,7 @@ void RBTreeOperations::findElement() {
     std::getline(std::cin, input);
     int value;
     value = std::stoi(input);
-    bool contains = tree.containsKey(value);
+    bool contains = tree.contains(value);
     if(contains)
     {
         text = "Drzewo zawiera element o wartosci ";
@@ -109,7 +109,10 @@ void RBTreeOperations::findElement() {
 }
 
 void RBTreeOperations::display() {
+#if DEBUG
+#else
     std::cout << tree.getRepresentation() << std::endl;
+#endif
 }
 
 void RBTreeOperations::fromFile() {
@@ -140,7 +143,7 @@ void RBTreeOperations::measurements() {
     int option = readInt();
     std::cout << "Dla jakiej wielkosci struktury chcesz mierzyc czas?\n";
 #if DEBUG
-    int options[] = {250, 500, 1250, 2500, 5000};
+    int options[] = {2500, 5000, 12500, 25000, 50000};
     int numberOfElements = sizeChoiceMenu(options, 5);
 #else
     int options[] = {1000, 2000, 5000, 10000, 20000};
@@ -172,7 +175,7 @@ void RBTreeOperations::measPutTime(int numberOfElements) {
         int32_t elementToPut = randomInt(numberOfElements/2);
         StopWatch watch;
         watch.start();
-        measurementStructure.put(elementToPut);
+        measurementStructure->put(elementToPut);
         watch.stop();
         average += watch.getLastMeasurmentPiccosec();
         if(!watch.getLastMeasurmentPiccosec())
@@ -180,6 +183,7 @@ void RBTreeOperations::measPutTime(int numberOfElements) {
             i--;
             continue;
         }
+        delete measurementStructure;
     }
     average /= 128;
     std::cout << "Sredni czas dodania elementu dla drzewa CC o rozmiarze "
@@ -187,11 +191,11 @@ void RBTreeOperations::measPutTime(int numberOfElements) {
               << " to " << std::to_string(average) << ".\n";
 }
 
-rbtree RBTreeOperations::generateTree(int size) {
-    auto measurementsStructure = rbtree();
+rbtree* RBTreeOperations::generateTree(int size) {
+    auto measurementsStructure = new rbtree();
     for(int j = 0; j < size; j++)
     {
-        measurementsStructure.put(randomInt(size/2));
+        measurementsStructure->put(randomInt(size/2));
     }
     return measurementsStructure;
 }
@@ -205,7 +209,7 @@ void RBTreeOperations::measRemTime(int numberOfElements) {
         int32_t elementToRemove = randomInt(numberOfElements / 2);
         StopWatch watch;
         watch.start();
-        measurementStructure.removeKey(elementToRemove);
+        measurementStructure->remove(elementToRemove);
         watch.stop();
         average += watch.getLastMeasurmentPiccosec();
         if(!watch.getLastMeasurmentPiccosec())
@@ -213,6 +217,7 @@ void RBTreeOperations::measRemTime(int numberOfElements) {
             i--;
             continue;
         }
+        delete measurementStructure;
     }
     average /= 128;
     std::cout << "Sredni czas usuniecia elementu dla drzewa CC o rozmiarze "
@@ -230,16 +235,17 @@ void RBTreeOperations::measFindTime(int numberOfElements) {
         StopWatch watch;
         bool contains;
         watch.start();
-        contains = measurementStructure.containsKey(elementToFind);
+        contains = measurementStructure->contains(elementToFind);
         watch.stop();
         if(contains)
-            tree.put(0);
+            measurementStructure->put(0);
         average += watch.getLastMeasurmentPiccosec();
         if(!watch.getLastMeasurmentPiccosec())
         {
             i--;
             continue;
         }
+        delete measurementStructure;
     }
     average /= 128;
     std::cout << "Sredni czas wyszukania elementu dla drzewa CC o rozmiarze "

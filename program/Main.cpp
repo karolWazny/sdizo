@@ -28,7 +28,6 @@ int Main::run() {
         displayMenu();
         std::getline(std::wcin, input);
         interpretInput();
-        //system("cls");
     }
     return 0;
 }
