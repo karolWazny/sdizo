@@ -120,7 +120,7 @@ void Array<T>::putAtPosition(T element, const int index)
     {
         newArray[i] = elements[i];
     }
-    for(int i = index + 1; i < length; i++)
+    for(int i = index; i < length; i++)
     {
         newArray[i+1] = elements[i];
     }

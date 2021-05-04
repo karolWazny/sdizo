@@ -15,7 +15,8 @@ add_executable(Google_Tests_run
         NodeRotatorTest.cpp
         PutRestorerTest.cpp
         DeleteRestorerTest.cpp
-        AVLTest.cpp)
+        AVLTest.cpp
+        ArrayTests.cpp)
 
 # linking Google_Tests_run with structure_templates_lib which will be tested
 target_link_libraries(Google_Tests_run structure_templates_lib)
