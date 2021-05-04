@@ -159,7 +159,7 @@ void HeapOperations::measurements() {
 
 void HeapOperations::measPutTime() {
     std::cout << "Dla jakiego rozmiaru struktury chcesz mierzyc czas?\n";
-    int options[] = {2500, 5000, 12500, 25000, 50000};
+    int options[] = {1000, 2000, 5000, 10000, 20000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     unsigned long long average = 0;
     for(int i = 0; i < 128; i++)
@@ -195,7 +195,7 @@ heap HeapOperations::generateHeap(int size) {
 
 void HeapOperations::measFindTime() {
     std::cout << "Dla jakiego rozmiaru struktury chcesz mierzyc czas?\n";
-    int options[] = {2500, 5000, 12500, 25000, 50000};
+    int options[] = {1000, 2000, 5000, 10000, 20000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     unsigned long long average = 0;
     for(int i = 0; i < 128; i++)
@@ -229,7 +229,7 @@ void HeapOperations::measFindTime() {
 
 void HeapOperations::measRemTime() {
     std::cout << "Dla jakiego rozmiaru struktury chcesz mierzyc czas?\n";
-    int options[] = {2500, 5000, 12500, 25000, 50000};
+    int options[] = {1000, 2000, 5000, 10000, 20000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     std::cout << "Skad chcesz usuwac element?\n"
                  "1. Z korzenia (extract_max).\n"

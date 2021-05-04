@@ -178,7 +178,7 @@ void ListOperations::measurements() {
                  "3. Wyszukanie elementu.\n";
     int option = readInt();
     std::cout << "Dla jakiego rozmiaru struktury chcesz mierzyc czas?\n";
-    int options[] = {2500, 5000, 12500, 25000, 50000};
+    int options[] = {1000, 2000, 5000, 10000, 20000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     switch(option)
     {

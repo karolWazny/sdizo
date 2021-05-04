@@ -202,7 +202,7 @@ void ArrayOperations::timeMeasurment() {
 
 void ArrayOperations::measureFindingTime() {
     std::cout << "Dla ilu elementow chcesz zmierzyc czas wyszukiwania?\n";
-    int options[] = {25000, 50000, 125000, 250000, 500000};
+    int options[] = {1000, 2000, 5000, 10000, 20000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     unsigned long long average = 0;
     for(int i = 0; i < 128; i++)
@@ -238,7 +238,7 @@ void ArrayOperations::measureFindingTime() {
 
 void ArrayOperations::measurePuttingTime() {
     std::cout << "Dla jakiego rozmiaru struktury chcesz mierzyc czas?\n";
-    int options[] = {250000, 500000, 1250000, 2500000, 5000000};
+    int options[] = {1000, 2000, 5000, 10000, 20000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     std::cout << "Gdzie chcesz wstawiac nowy element?\n"
                  "1. Na poczatku.\n"
@@ -350,7 +350,7 @@ unsigned long long ArrayOperations::measPutEnd(int size) {
 
 void ArrayOperations::measureRemovingTime() {
     std::cout << "Dla jakiej ilosci danych w tablicy chcesz mierzyc czas?\n";
-    int options[] = {250000, 500000, 1250000, 2500000, 5000000};
+    int options[] = {1000, 2000, 5000, 10000, 20000};
     int numberOfElements = sizeChoiceMenu(options, 5);
     std::cout << "Skad chcesz usuwac element?\n"
                  "1. Z poczatku.\n"
